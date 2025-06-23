@@ -1,8 +1,10 @@
 package com.example.gabs.entidades;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 
 @Entity
+@Table(name = "PRONTUARIO")
 public class prontuario {
     private String Id_prontuario;
     private String observacao;

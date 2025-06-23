@@ -1,10 +1,17 @@
 package com.example.gabs.entidades;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 
 @Entity
+@Table(name = "ALTERACAO_SISTEMICA")
 public class alteracaoSistemica {
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id_alteracao;
     private String observacao;
     private String autor;
     private String tipo_autor;
@@ -12,17 +19,17 @@ public class alteracaoSistemica {
 
 
     
-    public alteracaoSistemica(String id, String observacao) {
-        this.id = id;
+    public alteracaoSistemica(String id_alteracao, String observacao) {
+        this.id_alteracao = id_alteracao;
         this.observacao = observacao;
     }
 
-    public String getId() {
-        return id;
+    public String getId_alteracao() {
+        return id_alteracao;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdAlteracao(String id_alteracao) {
+        this.id_alteracao = id_alteracao;
     }
 
     public String getobservacao() {

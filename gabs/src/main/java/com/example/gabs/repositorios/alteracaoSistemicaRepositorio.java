@@ -7,11 +7,15 @@ public class alteracaoSistemicaRepositorio {
     public void guardaralteracaoSistemicaRepositorio(String nombre) {
     }
 
-    public String buscaralteracaoSistemicaRepositorio(String id) {
+    public String buscaralteracaoSistemicaRepositorioFuncionario(String id) {
         return "alteracaoSistemicaRepositorio encontrado";
     }
 
     public void eliminaralteracaoSistemicaRepositorio(String id) {
     } 
-        
+
+    
+    public String buscaralteracaoSistemicaRepositorioPorPaciente(String id) {
+        return "alteracaoSistemicaRepositorio encontrado";
+    }   
 }

@@ -7,11 +7,11 @@ public class prontuarioRepositorio {
     public void guardarprontuario(String nombre) {
     }
 
-    public String buscarprontuario(String id) {
+    public String buscarprontuario(String id_procedimento) {
         return "prontuario encontrado";
     }
 
-    public void eliminarprontuario(String id) {
+    public void eliminarprontuario(String id_prontuario) {
     } 
         
 }

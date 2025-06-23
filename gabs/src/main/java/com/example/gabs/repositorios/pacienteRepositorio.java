@@ -13,5 +13,8 @@ public class pacienteRepositorio {
 
     public void eliminarPaciente(String id) {
     } 
-        
+
+    public String listarPacientes() {
+        return "Paciente encontrado";
+    }
 }
