@@ -1,0 +1,10 @@
+[2025-07-12T23:15:27.632Z] INFO: Servidor rodando na porta 3000
+[2025-07-12T23:16:25.652Z] ERROR: Erro ao inserir paciente com CPF 12345678900: Duplicate entry '12345678900' for key 'PACIENTE.PRIMARY'
+[2025-07-12T23:16:35.726Z] INFO: Paciente com CPF 12322278900 inserido com sucesso
+[2025-07-12T23:21:10.420Z] INFO: Servidor rodando na porta 3000
+[2025-07-12T23:21:16.952Z] ERROR: Erro ao inserir FUNCIONARIO: Duplicate entry '92245432100' for key 'FUNCIONARIO.PRIMARY'
+[2025-07-12T23:21:19.200Z] ERROR: Erro ao inserir FUNCIONARIO: Duplicate entry '92245432100' for key 'FUNCIONARIO.PRIMARY'
+[2025-07-12T23:21:33.709Z] INFO: FUNCIONARIO Dr. André Andrade inserido com sucesso
+[2025-07-12T23:31:30.440Z] INFO: Servidor rodando na porta 3000
+[2025-07-12T23:31:56.680Z] INFO: UNIDADE 3da não encontrada para exclusão
+[2025-07-12T23:31:58.795Z] INFO: UNIDADE 3da não encontrada para exclusão
