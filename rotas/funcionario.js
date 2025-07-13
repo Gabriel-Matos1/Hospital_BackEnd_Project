@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
-const logger = require('../logger');  // Certifique-se que esse caminho está correto
+const logger = require('../logger');  
+const permitirTipos = require('../meios/permitirTipos');
+const verificaLogin = require('../meios/verificaLogin'); 
 
 // Inserir FUNCIONARIO
-router.post('/', (req, res) => {
+router.post('/',verificaLogin,permitirTipos('administrador'), (req, res) => {
   const { cpf, tipo, nome, idade, idUnidade, dataNascimento } = req.body;
 
   const sql = `
@@ -26,7 +28,7 @@ router.post('/', (req, res) => {
 });
 
 // Buscar todos os FUNCIONARIOS
-router.get('/', (req, res) => {
+router.get('/',verificaLogin,permitirTipos('administrador'), (req, res) => {
   const sql = `SELECT * FROM FUNCIONARIO`;
 
   db.query(sql, (err, results) => {
@@ -42,7 +44,7 @@ router.get('/', (req, res) => {
 });
 
 // Buscar FUNCIONARIO por CPF
-router.get('/:cpf', (req, res) => {
+router.get('/:cpf', permitirTipos('administrador'), (req, res) => {
   const cpf = req.params.cpf;
 
   const sql = `SELECT * FROM FUNCIONARIO WHERE CPF_FUNCIONARIO = ?`;
@@ -65,7 +67,7 @@ router.get('/:cpf', (req, res) => {
 });
 
 // Atualizar FUNCIONARIO por CPF
-router.put('/:cpf', (req, res) => {
+router.put('/:cpf', permitirTipos('administrador'), (req, res) => {
   const cpf = req.params.cpf;
   const { tipo, nome, idade, idUnidade, dataNascimento } = req.body;
 
@@ -96,27 +98,48 @@ router.put('/:cpf', (req, res) => {
   });
 });
 
-// Deletar FUNCIONARIO por CPF
-router.delete('/:cpf', (req, res) => {
+router.delete('/:cpf', permitirTipos('administrador'), (req, res) => {
   const cpf = req.params.cpf;
 
-  const sql = `DELETE FROM FUNCIONARIO WHERE CPF_FUNCIONARIO = ?`;
+  // Verifica se há procedimentos associados ao funcionário
+  const sqlCheck = `
+    SELECT COUNT(*) AS count 
+    FROM PROCEDIMENTO 
+    WHERE CPF_FUNCIONARIO_FK = ?
+  `;
 
-  db.query(sql, [cpf], (err, result) => {
+  db.query(sqlCheck, [cpf], (err, results) => {
     if (err) {
-      console.error('Erro ao deletar FUNCIONARIO:', err.message);
-      logger.error(`Erro ao deletar FUNCIONARIO: ${err.message}`);
+      console.error('Erro ao verificar procedimentos do funcionário:', err.message);
+      logger.error(`Erro ao verificar procedimentos para funcionário ${cpf}: ${err.message}`);
       return res.status(500).json({ error: err.message });
     }
-    if (result.affectedRows === 0) {
-      console.log(`FUNCIONARIO com CPF ${cpf} não encontrado para exclusão`);
-      logger.info(`FUNCIONARIO com CPF ${cpf} não encontrado para exclusão`);
-      return res.status(404).json({ message: 'FUNCIONARIO não encontrado' });
+
+    if (results[0].count > 0) {
+      logger.info(`Tentativa de deletar funcionário ${cpf} com procedimentos vinculados`);
+      return res.status(400).json({ message: 'Funcionário possui procedimentos vinculados e não pode ser excluído.' });
     }
-    console.log(`FUNCIONARIO com CPF ${cpf} deletado com sucesso`);
-    logger.info(`FUNCIONARIO com CPF ${cpf} deletado com sucesso`);
-    res.json({ message: 'FUNCIONARIO deletado com sucesso' });
+
+    // Se não houver procedimentos, permite a exclusão
+    const sqlDelete = `DELETE FROM FUNCIONARIO WHERE CPF_FUNCIONARIO = ?`;
+
+    db.query(sqlDelete, [cpf], (err, result) => {
+      if (err) {
+        console.error('Erro ao deletar FUNCIONARIO:', err.message);
+        logger.error(`Erro ao deletar FUNCIONARIO ${cpf}: ${err.message}`);
+        return res.status(500).json({ error: err.message });
+      }
+      if (result.affectedRows === 0) {
+        console.log(`FUNCIONARIO com CPF ${cpf} não encontrado para exclusão`);
+        logger.info(`FUNCIONARIO com CPF ${cpf} não encontrado para exclusão`);
+        return res.status(404).json({ message: 'FUNCIONARIO não encontrado' });
+      }
+      console.log(`FUNCIONARIO com CPF ${cpf} deletado com sucesso`);
+      logger.info(`FUNCIONARIO com CPF ${cpf} deletado com sucesso`);
+      res.json({ message: 'FUNCIONARIO deletado com sucesso' });
+    });
   });
 });
+
 
 module.exports = router;

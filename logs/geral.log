@@ -8,3 +8,44 @@
 [2025-07-12T23:31:30.440Z] INFO: Servidor rodando na porta 3000
 [2025-07-12T23:31:56.680Z] INFO: UNIDADE 3da não encontrada para exclusão
 [2025-07-12T23:31:58.795Z] INFO: UNIDADE 3da não encontrada para exclusão
+[2025-07-12T23:43:54.760Z] INFO: Servidor rodando na porta 3000
+[2025-07-12T23:43:59.174Z] INFO: Lista de pacientes retornada com sucesso
+[2025-07-12T23:44:10.265Z] INFO: Paciente com cpf 111.222.000-11 retornado com sucesso
+[2025-07-12T23:44:18.945Z] INFO: Nenhum procedimento encontrado para o paciente 111.222.000-11
+[2025-07-12T23:49:23.164Z] ERROR: Erro ao inserir PROCEDIMENTO: Incorrect datetime value: '2025-08-01T14:30:00Z' for column 'DATA_HORARIO' at row 1
+[2025-07-12T23:49:41.623Z] INFO: Lista de PROCEDIMENTOS retornada com sucesso
+[2025-07-12T23:50:10.551Z] ERROR: Erro ao inserir PROCEDIMENTO: Incorrect datetime value: '2025-07-15T17:30:00.000Z' for column 'DATA_HORARIO' at row 1
+[2025-07-12T23:50:36.417Z] INFO: PROCEDIMENTO 101 inserido com sucesso
+[2025-07-12T23:50:59.458Z] INFO: PROCEDIMENTO 102 inserido com sucesso
+[2025-07-12T23:51:35.807Z] INFO: PROCEDIMENTO 103 inserido com sucesso
+[2025-07-13T00:45:09.613Z] INFO: Servidor rodando na porta 3000
+[2025-07-13T00:58:36.676Z] ERROR: Erro ao inserir PROCEDIMENTO: Duplicate entry '103' for key 'PROCEDIMENTO.PRIMARY'
+[2025-07-13T01:06:35.116Z] INFO: Servidor rodando na porta 3000
+[2025-07-13T01:06:55.601Z] ERROR: Erro ao inserir PROCEDIMENTO: Duplicate entry '103' for key 'PROCEDIMENTO.PRIMARY'
+[2025-07-13T01:07:10.473Z] INFO: Lista de PROCEDIMENTOS retornada com sucesso
+[2025-07-13T01:07:19.210Z] INFO: Lista de pacientes retornada com sucesso
+[2025-07-13T01:11:33.550Z] INFO: Lista de pacientes retornada com sucesso
+[2025-07-13T01:11:35.948Z] INFO: Lista de pacientes retornada com sucesso
+[2025-07-13T01:11:59.292Z] INFO: Lista de pacientes retornada com sucesso
+[2025-07-13T01:12:33.933Z] INFO: Lista de pacientes retornada com sucesso
+[2025-07-13T01:12:35.986Z] INFO: Lista de pacientes retornada com sucesso
+[2025-07-13T01:12:43.667Z] INFO: Lista de pacientes retornada com sucesso
+[2025-07-13T01:14:14.955Z] INFO: Lista de pacientes retornada com sucesso
+[2025-07-13T01:22:28.670Z] INFO: Lista de pacientes retornada com sucesso
+[2025-07-13T01:22:31.934Z] INFO: Lista de pacientes retornada com sucesso
+[2025-07-13T01:25:58.571Z] INFO: Lista de pacientes retornada com sucesso
+[2025-07-13T01:29:37.387Z] INFO: Lista de pacientes retornada com sucesso
+[2025-07-13T01:31:48.416Z] INFO: Lista de pacientes retornada com sucesso
+[2025-07-13T01:31:59.955Z] INFO: Lista de pacientes retornada com sucesso
+[2025-07-13T01:35:26.680Z] INFO: Lista de pacientes retornada com sucesso
+[2025-07-13T01:35:28.664Z] INFO: Lista de pacientes retornada com sucesso
+[2025-07-13T01:37:04.351Z] INFO: Lista de pacientes retornada com sucesso
+[2025-07-13T01:40:14.607Z] INFO: Lista de pacientes retornada com sucesso
+[2025-07-13T01:48:34.694Z] INFO: Servidor rodando na porta 3000
+[2025-07-13T01:53:41.965Z] ERROR: Erro ao autenticar paciente: Table 'clinica.PACIENTES' doesn't exist
+[2025-07-13T01:58:00.412Z] ERROR: Erro ao autenticar paciente: Table 'clinica.PACIENTES' doesn't exist
+[2025-07-13T01:58:14.951Z] INFO: Servidor rodando na porta 3000
+[2025-07-13T01:58:21.187Z] INFO: Funcionário 99999999999 autenticado
+[2025-07-13T01:58:46.876Z] INFO: Lista de pacientes retornada com sucesso
+[2025-07-13T01:58:56.185Z] INFO: Lista de PROCEDIMENTOS retornada com sucesso
+[2025-07-13T01:59:06.321Z] INFO: Lista de PRONTUARIOS retornada com sucesso

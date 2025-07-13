@@ -1,3 +1,9 @@
 [2025-07-12T23:16:25.652Z] ERROR: Erro ao inserir paciente com CPF 12345678900: Duplicate entry '12345678900' for key 'PACIENTE.PRIMARY'
 [2025-07-12T23:21:16.952Z] ERROR: Erro ao inserir FUNCIONARIO: Duplicate entry '92245432100' for key 'FUNCIONARIO.PRIMARY'
 [2025-07-12T23:21:19.200Z] ERROR: Erro ao inserir FUNCIONARIO: Duplicate entry '92245432100' for key 'FUNCIONARIO.PRIMARY'
+[2025-07-12T23:49:23.164Z] ERROR: Erro ao inserir PROCEDIMENTO: Incorrect datetime value: '2025-08-01T14:30:00Z' for column 'DATA_HORARIO' at row 1
+[2025-07-12T23:50:10.551Z] ERROR: Erro ao inserir PROCEDIMENTO: Incorrect datetime value: '2025-07-15T17:30:00.000Z' for column 'DATA_HORARIO' at row 1
+[2025-07-13T00:58:36.676Z] ERROR: Erro ao inserir PROCEDIMENTO: Duplicate entry '103' for key 'PROCEDIMENTO.PRIMARY'
+[2025-07-13T01:06:55.601Z] ERROR: Erro ao inserir PROCEDIMENTO: Duplicate entry '103' for key 'PROCEDIMENTO.PRIMARY'
+[2025-07-13T01:53:41.965Z] ERROR: Erro ao autenticar paciente: Table 'clinica.PACIENTES' doesn't exist
+[2025-07-13T01:58:00.412Z] ERROR: Erro ao autenticar paciente: Table 'clinica.PACIENTES' doesn't exist
