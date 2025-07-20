@@ -4,8 +4,7 @@ const db = require('../db');
 const logger = require('../logger');
 const permitirTipos = require('../meios/permitirTipos');
 
-// Inserir paciente
-router.post('/',permitirTipos('administrador'), (req, res) => {
+router.post('/',permitirTipos('administrador','enfermeiro', 'paciente'), (req, res) => {
   const { cpf, nome, idade, convenio, observacao, dataNascimento } = req.body;
 
   const sql = `
@@ -24,8 +23,7 @@ router.post('/',permitirTipos('administrador'), (req, res) => {
   });
 });
 
-// Buscar todos os pacientes
-router.get('/',permitirTipos('administrador'), (req, res) => {
+router.get('/',permitirTipos('enfermeiro','Administrador'), (req, res) => {
   const sql = `SELECT * FROM PACIENTE`;
 
   db.query(sql, (err, results) => {
@@ -39,8 +37,7 @@ router.get('/',permitirTipos('administrador'), (req, res) => {
   });
 });
 
-// Buscar paciente pelo CPF
-router.get('/:cpf', permitirTipos('administrador'), (req, res) => {
+router.get('/:cpf', (req, res) => {
   const cpf = req.params.cpf;
 
   const sql = `SELECT * FROM PACIENTE WHERE CPF_PACIENTE = ?`;
@@ -61,7 +58,7 @@ router.get('/:cpf', permitirTipos('administrador'), (req, res) => {
     res.json(results[0]);
   });
 });
-router.get('/:cpf/historico',permitirTipos('administrador'), (req, res) => {
+router.get('/:cpf/historico', (req, res) => {
   const cpf = req.params.cpf;
 
   const sql = `
@@ -84,7 +81,7 @@ router.get('/:cpf/historico',permitirTipos('administrador'), (req, res) => {
   });
 });
 
-router.put('/:cpf', permitirTipos('administrador'),(req, res) => {
+router.put('/:cpf', permitirTipos('administrador','enfermeiro'),(req, res) => {
   const cpf = req.params.cpf;
   const { nome, idade, convenio, observacao, dataNascimento } = req.body;
 
@@ -113,10 +110,9 @@ router.put('/:cpf', permitirTipos('administrador'),(req, res) => {
   });
 });
 
-router.delete('/:cpf',permitirTipos('administrador'), (req, res) => {
+router.delete('/:cpf',permitirTipos('administrador','enfermeiro', 'paciente'), (req, res) => {
   const cpf = req.params.cpf;
 
-  // Primeiro, verificar se existem procedimentos agendados para o paciente
   const sqlCheck = `
     SELECT COUNT(*) AS count 
     FROM PROCEDIMENTO 
@@ -135,7 +131,6 @@ router.delete('/:cpf',permitirTipos('administrador'), (req, res) => {
       return res.status(400).json({ message: 'Paciente possui procedimentos agendados e não pode ser excluído.' });
     }
 
-    // Se não tiver procedimentos agendados, faz a exclusão do paciente
     const sqlDelete = `DELETE FROM PACIENTE WHERE CPF_PACIENTE = ?`;
 
     db.query(sqlDelete, [cpf], (err, result) => {

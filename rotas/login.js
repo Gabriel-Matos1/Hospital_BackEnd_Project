@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 const logger = require('../logger');
-    console.log('arquivo login acessado');
-// Login: tenta autenticar como paciente, depois como funcionário
+console.log('arquivo login acessado');
 
 router.post('/autenticar', (req, res) => {
   const { email, senha } = req.body;

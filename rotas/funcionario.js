@@ -5,7 +5,6 @@ const logger = require('../logger');
 const permitirTipos = require('../meios/permitirTipos');
 const verificaLogin = require('../meios/verificaLogin'); 
 
-// Inserir FUNCIONARIO
 router.post('/',verificaLogin,permitirTipos('administrador'), (req, res) => {
   const { cpf, tipo, nome, idade, idUnidade, dataNascimento } = req.body;
 
@@ -27,7 +26,6 @@ router.post('/',verificaLogin,permitirTipos('administrador'), (req, res) => {
   });
 });
 
-// Buscar todos os FUNCIONARIOS
 router.get('/',verificaLogin,permitirTipos('administrador'), (req, res) => {
   const sql = `SELECT * FROM FUNCIONARIO`;
 
@@ -43,7 +41,6 @@ router.get('/',verificaLogin,permitirTipos('administrador'), (req, res) => {
   });
 });
 
-// Buscar FUNCIONARIO por CPF
 router.get('/:cpf', permitirTipos('administrador'), (req, res) => {
   const cpf = req.params.cpf;
 
@@ -66,7 +63,6 @@ router.get('/:cpf', permitirTipos('administrador'), (req, res) => {
   });
 });
 
-// Atualizar FUNCIONARIO por CPF
 router.put('/:cpf', permitirTipos('administrador'), (req, res) => {
   const cpf = req.params.cpf;
   const { tipo, nome, idade, idUnidade, dataNascimento } = req.body;
@@ -101,7 +97,6 @@ router.put('/:cpf', permitirTipos('administrador'), (req, res) => {
 router.delete('/:cpf', permitirTipos('administrador'), (req, res) => {
   const cpf = req.params.cpf;
 
-  // Verifica se há procedimentos associados ao funcionário
   const sqlCheck = `
     SELECT COUNT(*) AS count 
     FROM PROCEDIMENTO 
@@ -120,7 +115,6 @@ router.delete('/:cpf', permitirTipos('administrador'), (req, res) => {
       return res.status(400).json({ message: 'Funcionário possui procedimentos vinculados e não pode ser excluído.' });
     }
 
-    // Se não houver procedimentos, permite a exclusão
     const sqlDelete = `DELETE FROM FUNCIONARIO WHERE CPF_FUNCIONARIO = ?`;
 
     db.query(sqlDelete, [cpf], (err, result) => {

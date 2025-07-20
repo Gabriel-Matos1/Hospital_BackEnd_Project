@@ -3,7 +3,6 @@ const router = express.Router();
 const db = require('../db'); // ajuste se o caminho for diferente
 const logger = require('../logger');
 
-// Inserir ALTERACAO_SISTEMICA
 router.post('/', (req, res) => {
   const { idAlteracao, idProcedimento, observacao, autorAlteracao, tipoAutor } = req.body;
 
@@ -25,7 +24,6 @@ router.post('/', (req, res) => {
   });
 });
 
-// Buscar todas
 router.get('/', (req, res) => {
   const sql = `SELECT * FROM ALTERACAO_SISTEMICA`;
 
@@ -41,7 +39,6 @@ router.get('/', (req, res) => {
   });
 });
 
-// Buscar por ID_ALTERACAO
 router.get('/:id', (req, res) => {
   const id = req.params.id;
 
@@ -64,7 +61,6 @@ router.get('/:id', (req, res) => {
   });
 });
 
-// Atualizar por ID_ALTERACAO
 router.put('/:id', (req, res) => {
   const id = req.params.id;
   const { idProcedimento, observacao, autorAlteracao, tipoAutor } = req.body;
@@ -95,7 +91,6 @@ router.put('/:id', (req, res) => {
   });
 });
 
-// Deletar por ID_ALTERACAO
 router.delete('/:id', (req, res) => {
   const id = req.params.id;
 

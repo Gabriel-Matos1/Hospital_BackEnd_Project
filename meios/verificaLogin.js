@@ -1,4 +1,4 @@
-// meios/verificaLogin.js
+
 function verificaLogin(req, res, next) {
   console.log('Middleware verificaLogin chamado');
   if (req.session && req.session.usuario) {

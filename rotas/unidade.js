@@ -3,7 +3,6 @@ const router = express.Router();
 const db = require('../db');
 const logger = require('../logger'); // importa o logger
 
-// Inserir UNIDADE
 router.post('/', (req, res) => {
   const { idUnidade, localizacao } = req.body;
 
@@ -25,7 +24,6 @@ router.post('/', (req, res) => {
   });
 });
 
-// Buscar todas as UNIDADES
 router.get('/', (req, res) => {
   const sql = `SELECT * FROM UNIDADE`;
 
@@ -41,7 +39,6 @@ router.get('/', (req, res) => {
   });
 });
 
-// Buscar UNIDADE por ID
 router.get('/:id', (req, res) => {
   const id = req.params.id;
 
@@ -64,7 +61,6 @@ router.get('/:id', (req, res) => {
   });
 });
 
-// Atualizar UNIDADE por ID
 router.put('/:id', (req, res) => {
   const id = req.params.id;
   const { localizacao } = req.body;
@@ -92,11 +88,9 @@ router.put('/:id', (req, res) => {
   });
 });
 
-// Deletar UNIDADE por ID - com verificação de funcionários vinculados
 router.delete('/:id', (req, res) => {
   const id = req.params.id;
 
-  // 1. Verificar se existem funcionários vinculados a essa unidade
   const checkFuncionariosSql = `SELECT COUNT(*) AS total FROM FUNCIONARIO WHERE ID_UNIDADE_FK = ?`;
 
   db.query(checkFuncionariosSql, [id], (err, results) => {
@@ -108,14 +102,12 @@ router.delete('/:id', (req, res) => {
 
     const totalFuncionarios = results[0].total;
     if (totalFuncionarios > 0) {
-      // Não pode deletar pois existem funcionários vinculados
       const msg = `Não é possível deletar a UNIDADE ${id} pois possui ${totalFuncionarios} funcionário(s) vinculado(s).`;
       console.log(msg);
       logger.info(msg);
       return res.status(400).json({ message: msg });
     }
 
-    // 2. Se não houver funcionários, pode deletar a unidade
     const deleteSql = `DELETE FROM UNIDADE WHERE ID_UNIDADE = ?`;
 
     db.query(deleteSql, [id], (err, result) => {

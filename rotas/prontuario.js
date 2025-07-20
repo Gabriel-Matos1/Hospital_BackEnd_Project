@@ -3,7 +3,6 @@ const router = express.Router();
 const db = require('../db');
 const logger = require('../logger');  // importe o logger
 
-// Inserir PRONTUARIO
 router.post('/', (req, res) => {
   const { idProntuario, idProcedimento, observacao } = req.body;
 
@@ -25,7 +24,6 @@ router.post('/', (req, res) => {
   });
 });
 
-// Buscar todos os PRONTUARIOS
 router.get('/', (req, res) => {
   const sql = `SELECT * FROM PRONTUARIO`;
 
@@ -41,7 +39,6 @@ router.get('/', (req, res) => {
   });
 });
 
-// Buscar PRONTUARIO por ID
 router.get('/:id', (req, res) => {
   const id = req.params.id;
 
@@ -64,7 +61,6 @@ router.get('/:id', (req, res) => {
   });
 });
 
-// Atualizar PRONTUARIO por ID
 router.put('/:id', (req, res) => {
   const id = req.params.id;
   const { idProcedimento, observacao } = req.body;
@@ -93,7 +89,6 @@ router.put('/:id', (req, res) => {
   });
 });
 
-// Deletar PRONTUARIO por ID
 router.delete('/:id', (req, res) => {
   const id = req.params.id;
 

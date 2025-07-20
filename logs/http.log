@@ -49,3 +49,8 @@
 ::1 - - [13/Jul/2025:01:58:46 +0000] "GET /pacientes HTTP/1.1" 200 979 "-" "PostmanRuntime/7.44.0"
 ::1 - - [13/Jul/2025:01:58:56 +0000] "GET /procedimentos HTTP/1.1" 200 841 "-" "PostmanRuntime/7.44.0"
 ::1 - - [13/Jul/2025:01:59:06 +0000] "GET /prontuarios HTTP/1.1" 200 135 "-" "PostmanRuntime/7.44.0"
+::1 - - [13/Jul/2025:02:03:33 +0000] "GET /pacientes HTTP/1.1" 401 41 "-" "PostmanRuntime/7.44.0"
+::1 - - [13/Jul/2025:02:03:53 +0000] "GET /login/autenticar HTTP/1.1" 401 41 "-" "PostmanRuntime/7.44.0"
+::1 - - [13/Jul/2025:02:04:14 +0000] "POST /login/autenticar HTTP/1.1" 200 143 "-" "PostmanRuntime/7.44.0"
+::1 - - [13/Jul/2025:02:04:30 +0000] "GET /pacientes HTTP/1.1" 403 24 "-" "PostmanRuntime/7.44.0"
+::1 - - [13/Jul/2025:02:05:17 +0000] "GET /pacientes HTTP/1.1" 403 24 "-" "PostmanRuntime/7.44.0"

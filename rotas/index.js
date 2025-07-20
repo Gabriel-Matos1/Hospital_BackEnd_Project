@@ -1,12 +1,11 @@
-// rotas/index.js
 const express = require('express');
 const router = express.Router();
 const verificaLogin = require('../meios/verificaLogin'); 
-router.use('/login', require('./login')); // rota livre
+router.use('/login', require('./login')); 
     
 console.log('arquivo de index acessado');
 
-router.use(verificaLogin); // tudo abaixo é protegido
+router.use(verificaLogin); 
     console.log('passou o verifica');
 router.use('/pacientes', require('./pacientes'));
 

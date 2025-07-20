@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
-const logger = require('../logger'); // adiciona o logger
+const logger = require('../logger'); 
 
-// Inserir PROCEDIMENTO
 router.post('/', (req, res) => {
   const {
     idProcedimento,
@@ -41,7 +40,6 @@ router.post('/', (req, res) => {
   });
 });
 
-// Buscar todos os PROCEDIMENTOS
 router.get('/', (req, res) => {
   const sql = `SELECT * FROM PROCEDIMENTO`;
 
@@ -57,7 +55,6 @@ router.get('/', (req, res) => {
   });
 });
 
-// Buscar PROCEDIMENTO por ID
 router.get('/:id', (req, res) => {
   const id = req.params.id;
 
@@ -80,7 +77,6 @@ router.get('/:id', (req, res) => {
   });
 });
 
-// Atualizar PROCEDIMENTO por ID
 router.put('/:id', (req, res) => {
   const id = req.params.id;
   const {
@@ -128,7 +124,6 @@ router.put('/:id', (req, res) => {
   });
 });
 
-// Deletar PROCEDIMENTO por ID
 router.delete('/:id', (req, res) => {
   const id = req.params.id;
 
