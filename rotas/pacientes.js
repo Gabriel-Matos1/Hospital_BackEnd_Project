@@ -81,7 +81,7 @@ router.get('/:cpf/historico', (req, res) => {
   });
 });
 
-router.put('/:cpf', permitirTipos('administrador','enfermeiro'),(req, res) => {
+router.put('/:cpf', permitirTipos('administrador','enfermeiro', 'paciente'),(req, res) => {
   const cpf = req.params.cpf;
   const { nome, idade, convenio, observacao, dataNascimento } = req.body;
 

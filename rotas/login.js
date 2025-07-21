@@ -11,7 +11,6 @@ router.post('/autenticar', (req, res) => {
     return res.status(400).json({ error: 'Email e senha são obrigatórios' });
   }
 
-  // Primeiro tenta como paciente
   const sqlPaciente = `
     SELECT CPF_PACIENTE AS cpf, NOME, 'paciente' AS tipo
     FROM PACIENTE
@@ -36,7 +35,7 @@ router.post('/autenticar', (req, res) => {
       return res.json({ message: 'Login realizado como paciente', usuario: req.session.usuario });
     }
 
-    // Se não for paciente, tenta como funcionário
+
     const sqlFuncionario = `
       SELECT CPF_FUNCIONARIO AS cpf, NOME, TIPO AS tipo
       FROM FUNCIONARIO
@@ -61,13 +60,11 @@ router.post('/autenticar', (req, res) => {
         return res.json({ message: 'Login realizado como funcionário', usuario: req.session.usuario });
       }
 
-      // Se não achou em nenhuma das duas
       return res.status(401).json({ error: 'Email ou senha inválidos' });
     });
   });
 });
 
-// Verificar se está logado
 router.get('/sessao', (req, res) => {
   if (req.session.usuario) {
     res.json({ logado: true, usuario: req.session.usuario });
@@ -76,7 +73,6 @@ router.get('/sessao', (req, res) => {
   }
 });
 
-// Logout
 router.post('/logout', (req, res) => {
   req.session.destroy(err => {
     if (err) {

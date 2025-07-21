@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
-const logger = require('../logger');  // importe o logger
+const logger = require('../logger');  
 
 router.post('/', (req, res) => {
   const { idProntuario, idProcedimento, observacao } = req.body;

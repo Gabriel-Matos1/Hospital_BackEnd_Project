@@ -11,13 +11,14 @@ router.post('/', (req, res) => {
     dataHorario,
     tipo,
     statusProcedimento,
-    idProntuario
+    idProntuario,
+    valor
   } = req.body;
 
   const sql = `
     INSERT INTO PROCEDIMENTO 
-    (ID_PROCEDIMENTO, CPF_PACIENTE_FK, CPF_FUNCIONARIO_FK, DATA_HORARIO, TIPO, STATUS_PROCEDIMENTO, ID_PRONTUARIO)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
+    (ID_PROCEDIMENTO, CPF_PACIENTE_FK, CPF_FUNCIONARIO_FK, DATA_HORARIO, TIPO, STATUS_PROCEDIMENTO, ID_PRONTUARIO, VALOR)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
   db.query(sql, [
@@ -27,7 +28,8 @@ router.post('/', (req, res) => {
     dataHorario,
     tipo,
     statusProcedimento,
-    idProntuario
+    idProntuario,
+    valor
   ], (err) => {
     if (err) {
       console.error('Erro ao inserir PROCEDIMENTO:', err.message);
@@ -85,7 +87,8 @@ router.put('/:id', (req, res) => {
     dataHorario,
     tipo,
     statusProcedimento,
-    idProntuario
+    idProntuario,
+    valor
   } = req.body;
 
   const sql = `
@@ -95,7 +98,8 @@ router.put('/:id', (req, res) => {
       DATA_HORARIO = ?,
       TIPO = ?,
       STATUS_PROCEDIMENTO = ?,
-      ID_PRONTUARIO = ?
+      ID_PRONTUARIO = ?,
+      VALOR = ?
     WHERE ID_PROCEDIMENTO = ?
   `;
 
@@ -106,7 +110,8 @@ router.put('/:id', (req, res) => {
     tipo,
     statusProcedimento,
     idProntuario,
-    id
+    id,
+    valor
   ], (err, result) => {
     if (err) {
       console.error('Erro ao atualizar PROCEDIMENTO:', err.message);

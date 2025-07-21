@@ -1,0 +1,228 @@
+
++-------------------+
+|   Funcionario     |
++-------------------+
+| - cpf: String     |
+| - tipo: String    |
+| - nome: String    |
+| - idade: Int      |
+| - dataNascimento: Date |
+| - idUnidade: Int  |
++-------------------+
+| +criar()          |
+| +listar()         |
+| +buscar(cpf)      |
+| +atualizar(cpf)   |
+| +deletar(cpf)     |
++-------------------+
+
++--------------------------+
+|        Paciente         |
++--------------------------+
+| - cpf: String           |
+| - nome: String          |
+| - idade: Int            |
+| - convenio: String      |
+| - observacao: String    |
+| - dataNascimento: Date  |
++--------------------------+
+| +criar()                |
+| +listar()               |
+| +buscar(cpf)            |
+| +atualizar(cpf)         |
+| +deletar(cpf)           |
+| +listarHistorico()      |
++--------------------------+
++----------------------------------+
+|          Procedimento           |
++----------------------------------+
+| - id: Int                       |
+| - cpfPaciente: String           |
+| - cpfFuncionario: String        |
+| - dataHorario: DateTime         |
+| - tipo: String                  |
+| - statusProcedimento: String    |
+| - idProntuario: Int             |
++----------------------------------+
+| +criar()                        |
+| +listar()                       |
+| +buscar(id)                     |
+| +atualizar(id)                  |
+| +deletar(id)                    |
++----------------------------------+
+
++-------------------------------+
+|            Leito             |
++-------------------------------+
+| - idLeito: string            |
+| - idUnidade: string          |
+| - status: string             |
+| - idPacienteFk: string       |
++-------------------------------+
+| +create(): void              |
+| +readAll(): void             |
+| +read(id: string): void      |
+| +update(id: string): void    |
+| +delete(id: string): void    |
++-------------------------------+
+
+
++-------------------------------+
+|           Remedio            |
++-------------------------------+
+| - id: string                 |
+| - nome: string               |
+| - qtd: int                   |
++-------------------------------+
+| +create(): void              |
+| +readAll(): void             |
+| +read(id: string): void      |
+| +update(id: string): void    |
+| +delete(id: string): void    |
++-------------------------------+
+
++----------------------+
+|     Prontuario       |
++----------------------+
+| - idProntuario: int  |
+| - idProcedimento: int|
+| - observacao: string |
++----------------------+
+| +create(): void      |
+| +readAll(): void     |
+| +read(id: int): void |
+| +update(id: int): void|
+| +delete(id: int): void|
++----------------------+
++--------------------------------+
+|           Unidade              |
++--------------------------------+
+| - idUnidade: string           |
+| - localizacao: string         |
+| - tipo: string                |
++--------------------------------+
+| +create(): void               |
+| +readAll(): void              |
+| +read(id: string): void       |
+| +update(id: string): void     |
+| +delete(id: string): void     |
++--------------------------------+
+
+
+/login
+
+    POST /login/autenticar
+    Autenticar usuário (paciente ou funcionário). Recebe email e senha.
+
+    GET /login/sessao
+    Verifica se o usuário está logado (sessão ativa).
+
+    POST /login/logout
+    Finaliza a sessão do usuário (logout).
+
+/pacientes
+
+    GET /pacientes
+    Retorna lista de todos os pacientes.
+
+    GET /pacientes/:cpf
+    Retorna os dados do paciente com o CPF especificado.
+
+    GET /pacientes/:cpf/historico
+    Retorna histórico de procedimentos do paciente (ordenado por data).
+
+    POST /pacientes
+    Cadastra um novo paciente.
+
+    PUT /pacientes/:cpf
+    Atualiza dados do paciente com o CPF especificado.
+
+    DELETE /pacientes/:cpf
+    Exclui paciente, desde que não tenha procedimentos agendados.
+
+/funcionarios
+
+
+    GET /funcionarios
+    Lista todos funcionários.
+
+    GET /funcionarios/:cpf
+    Dados do funcionário por CPF.
+
+    POST /funcionarios
+    Cadastrar funcionário.
+
+    PUT /funcionarios/:cpf
+    Atualizar funcionário.
+
+    DELETE /funcionarios/:cpf
+    Excluir funcionário.
+
+/alteracoes-sistemicas
+
+    GET /alteracoes-sistemicas
+    Lista todas as alterações sistêmicas.
+
+    GET /alteracoes-sistemicas/:id
+    Busca alteração sistêmica por ID.
+
+    POST /alteracoes-sistemicas
+    Cria uma nova alteração sistêmica.
+
+    PUT /alteracoes-sistemicas/:id
+    Atualiza alteração sistêmica pelo ID.
+
+    DELETE /alteracoes-sistemicas/:id
+    Exclui alteração sistêmica pelo ID.
+
+/procedimentos
+
+    GET /procedimentos
+    Lista todos procedimentos.
+
+    GET /procedimentos/:id
+    Busca procedimento por ID.
+
+    POST /procedimentos
+    Cria novo procedimento.
+
+    PUT /procedimentos/:id
+    Atualiza procedimento.
+
+    DELETE /procedimentos/:id
+    Exclui procedimento.
+
+/prontuarios
+
+    GET /prontuarios
+    Lista todos prontuários.
+
+    GET /prontuarios/:id
+    Busca prontuário por ID.
+
+    POST /prontuarios
+    Cria novo prontuário.
+
+    PUT /prontuarios/:id
+    Atualiza prontuário.
+
+    DELETE /prontuarios/:id
+    Exclui prontuário.
+
+/unidades
+
+    GET /unidades
+    Lista todas unidades.
+
+    GET /unidades/:id
+    Busca unidade por ID.
+
+    POST /unidades
+    Cria nova unidade.
+
+    PUT /unidades/:id
+    Atualiza unidade.
+
+    DELETE /unidades/:id
+    Exclui unidade (se não possuir funcionários vinculados).
+

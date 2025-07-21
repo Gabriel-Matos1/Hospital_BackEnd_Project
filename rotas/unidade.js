@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
-const logger = require('../logger'); // importa o logger
+const logger = require('../logger'); 
 
 router.post('/', (req, res) => {
   const { idUnidade, localizacao } = req.body;
 
   const sql = `
     INSERT INTO UNIDADE 
-    (ID_UNIDADE, LOCALIZAÇÃO)
-    VALUES (?, ?)
+    (ID_UNIDADE, LOCALIZAÇÃO, TIPO)
+    VALUES (?, ?, ?)
   `;
 
   db.query(sql, [idUnidade, localizacao], (err) => {
