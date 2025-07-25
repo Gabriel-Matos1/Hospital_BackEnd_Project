@@ -7,3 +7,21 @@
 [2025-07-13T01:06:55.601Z] ERROR: Erro ao inserir PROCEDIMENTO: Duplicate entry '103' for key 'PROCEDIMENTO.PRIMARY'
 [2025-07-13T01:53:41.965Z] ERROR: Erro ao autenticar paciente: Table 'clinica.PACIENTES' doesn't exist
 [2025-07-13T01:58:00.412Z] ERROR: Erro ao autenticar paciente: Table 'clinica.PACIENTES' doesn't exist
+[2025-07-25T01:06:46.659Z] ERROR: Erro ao inserir paciente com CPF undefined: Column 'CPF_PACIENTE' cannot be null
+[2025-07-25T01:06:57.782Z] ERROR: Erro ao inserir paciente com CPF undefined: Column 'CPF_PACIENTE' cannot be null
+[2025-07-25T01:07:43.196Z] ERROR: Erro ao inserir paciente com CPF undefined: Column 'CPF_PACIENTE' cannot be null
+[2025-07-25T01:08:01.125Z] ERROR: Erro ao inserir paciente com CPF undefined: Column 'CPF_PACIENTE' cannot be null
+[2025-07-25T01:08:38.799Z] ERROR: Erro ao inserir paciente com CPF undefined: Column 'CPF_PACIENTE' cannot be null
+[2025-07-25T01:09:23.726Z] ERROR: Erro ao inserir paciente com CPF undefined: Column 'CPF_PACIENTE' cannot be null
+[2025-07-25T01:09:29.260Z] ERROR: Erro ao inserir paciente com CPF undefined: Column 'CPF_PACIENTE' cannot be null
+[2025-07-25T01:13:12.999Z] ERROR: Erro ao inserir paciente com CPF undefined: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?, ?)' at line 3
+[2025-07-25T01:20:26.682Z] ERROR: Erro ao inserir paciente com CPF undefined: Column 'CPF_PACIENTE' cannot be null
+[2025-07-25T01:36:20.381Z] ERROR: Erro ao inserir remédio undefined: Column 'ID_REMEDIO' cannot be null
+[2025-07-25T01:36:52.653Z] ERROR: Erro ao inserir remédio R007: Column 'NOME' cannot be null
+[2025-07-25T01:43:21.259Z] ERROR: Erro ao inserir leito undefined: Column 'ID_LEITO' cannot be null
+[2025-07-25T01:44:13.074Z] ERROR: Erro ao inserir leito L010: Column 'ID_PACIENTE_FK' cannot be null
+[2025-07-25T01:44:24.422Z] ERROR: Erro ao inserir leito L010: Cannot add or update a child row: a foreign key constraint fails (`clinica`.`LEITOS`, CONSTRAINT `LEITOS_ibfk_1` FOREIGN KEY (`ID_PACIENTE_FK`) REFERENCES `PACIENTE` (`CPF_PACIENTE`))
+[2025-07-25T02:04:17.768Z] ERROR: Erro ao inserir FUNCIONARIO: Column 'CPF_FUNCIONARIO' cannot be null
+[2025-07-25T02:32:56.064Z] ERROR: Erro ao inserir PROCEDIMENTO: Column 'ID_PROCEDIMENTO' cannot be null
+[2025-07-25T02:33:04.338Z] ERROR: Erro ao inserir PROCEDIMENTO: Column 'ID_PROCEDIMENTO' cannot be null
+[2025-07-25T02:33:41.630Z] ERROR: Erro ao inserir PROCEDIMENTO: Column 'ID_PROCEDIMENTO' cannot be null

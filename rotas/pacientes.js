@@ -1,19 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');  
+const db = require('../db');
 const logger = require('../logger');
 const permitirTipos = require('../meios/permitirTipos');
 
-router.post('/',permitirTipos('administrador','enfermeiro', 'paciente'), (req, res) => {
-  const { cpf, nome, idade, convenio, observacao, dataNascimento } = req.body;
+router.post('/', permitirTipos('administrador', 'enfermeiro', 'paciente'), (req, res) => {
+  const { cpf, nome, idade, convenio, observacao, dataNascimento, email, senha } = req.body;
 
   const sql = `
     INSERT INTO PACIENTE 
-    (CPF_PACIENTE, NOME, IDADE, CONVENIO, OBSERVACAO, DATA_NASCIMENTO)
-    VALUES (?, ?, ?, ?, ?, ?)
+    (CPF_PACIENTE, NOME, IDADE, CONVENIO, OBSERVACAO, DATA_NASCIMENTO, EMAIL, SENHA)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
-  db.query(sql, [cpf, nome, idade, convenio, observacao, dataNascimento], (err) => {
+  db.query(sql, [cpf, nome, idade, convenio, observacao, dataNascimento, email, senha], (err) => {
     if (err) {
       logger.error(`Erro ao inserir paciente com CPF ${cpf}: ${err.message}`);
       return res.status(500).json({ error: err.message });
@@ -23,7 +23,7 @@ router.post('/',permitirTipos('administrador','enfermeiro', 'paciente'), (req, r
   });
 });
 
-router.get('/',permitirTipos('enfermeiro','Administrador'), (req, res) => {
+router.get('/', permitirTipos('enfermeiro', 'administrador'), (req, res) => {
   const sql = `SELECT * FROM PACIENTE`;
 
   db.query(sql, (err, results) => {
@@ -46,18 +46,17 @@ router.get('/:cpf', (req, res) => {
     if (err) {
       console.error('Erro ao buscar paciente:', err.message);
       logger.error(`Erro ao buscar pacientes: ${err.message}`);
- 
       return res.status(500).json({ error: err.message });
     }
     if (results.length === 0) {
-      logger.info(`Paciente com cpf ${cpf}  não encontrado`);
+      logger.info(`Paciente com CPF ${cpf} não encontrado`);
       return res.status(404).json({ message: 'Paciente não encontrado' });
     }
-    logger.info(`Paciente com cpf ${cpf} retornado com sucesso`);
-
+    logger.info(`Paciente com CPF ${cpf} retornado com sucesso`);
     res.json(results[0]);
   });
 });
+
 router.get('/:cpf/historico', (req, res) => {
   const cpf = req.params.cpf;
 
@@ -81,7 +80,7 @@ router.get('/:cpf/historico', (req, res) => {
   });
 });
 
-router.put('/:cpf', permitirTipos('administrador','enfermeiro', 'paciente'),(req, res) => {
+router.put('/:cpf', permitirTipos('administrador', 'enfermeiro', 'paciente'), (req, res) => {
   const cpf = req.params.cpf;
   const { nome, idade, convenio, observacao, dataNascimento } = req.body;
 
@@ -98,19 +97,18 @@ router.put('/:cpf', permitirTipos('administrador','enfermeiro', 'paciente'),(req
   db.query(sql, [nome, idade, convenio, observacao, dataNascimento, cpf], (err, result) => {
     if (err) {
       console.error('Erro ao atualizar paciente:', err.message);
-      logger.error(`Erro ao atualizar pacientes: ${err.message}`);
+      logger.error(`Erro ao atualizar paciente: ${err.message}`);
       return res.status(500).json({ error: err.message });
     }
     if (result.affectedRows === 0) {
       return res.status(404).json({ message: 'Paciente não encontrado' });
     }
-    logger.info(`Paciente com cpf ${cpf} atualizado com sucesso`);
-
-    res.json({ message: `Paciente com cpf ${cpf} atualizado com sucesso`});
+    logger.info(`Paciente com CPF ${cpf} atualizado com sucesso`);
+    res.json({ message: `Paciente com CPF ${cpf} atualizado com sucesso` });
   });
 });
 
-router.delete('/:cpf',permitirTipos('administrador','enfermeiro', 'paciente'), (req, res) => {
+router.delete('/:cpf', permitirTipos('administrador', 'enfermeiro', 'paciente'), (req, res) => {
   const cpf = req.params.cpf;
 
   const sqlCheck = `
@@ -140,14 +138,13 @@ router.delete('/:cpf',permitirTipos('administrador','enfermeiro', 'paciente'), (
         return res.status(500).json({ error: err.message });
       }
       if (result.affectedRows === 0) {
-        logger.info(`Paciente com cpf ${cpf} não encontrado`);
+        logger.info(`Paciente com CPF ${cpf} não encontrado`);
         return res.status(404).json({ message: 'Paciente não encontrado' });
       }
-      logger.info(`Paciente com cpf ${cpf} deletado com sucesso`);
+      logger.info(`Paciente com CPF ${cpf} deletado com sucesso`);
       res.json({ message: 'Paciente deletado com sucesso' });
     });
   });
 });
-
 
 module.exports = router;

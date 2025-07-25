@@ -6,7 +6,7 @@ router.use('/login', require('./login'));
 console.log('arquivo de index acessado');
 
 router.use(verificaLogin); 
-    console.log('passou o verifica');
+console.log('passou o verifica');
 router.use('/pacientes', require('./pacientes'));
 router.use('/funcionarios', require('./funcionario'));
 router.use('/procedimentos', require('./procedimento'));
